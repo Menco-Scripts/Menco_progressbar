@@ -1,3 +1,6 @@
+![GitHub release downloads](https://img.shields.io/github/downloads/Menco-Scripts/Menco_progressbar/total)
+
+
 # Menco Progress Bar
 
 **Menco\_progressbar** — a sleek, easy-to-use action progress bar for FiveM, lovingly inspired by the classic **time2rp**.
