@@ -1,5 +1,4 @@
-![GitHub release downloads]([https://img.shields.io/github/downloads/Menco-Scripts/Menco_progressbar/total)
-
+![GitHub release downloads](https://img.shields.io/github/downloads/Menco-Scripts/Menco_progressbar/total)
 
 # Menco Progress Bar
 
