@@ -1,0 +1,15 @@
+{
+  "containerBackground": "#262626",
+  "containerGradient": {
+    "start": "#2e1a1a",
+    "end": "#120909"
+  },
+  "progressBarGradient": {
+    "start": "#ac2c2f",
+    "middle": "#ac2c2f",
+    "end": "#ac2c2f"
+  },
+  "textColor": "#ffffff",
+  "boxShadowColor": "rgba(0, 0, 0, 0.3)",
+  "insetShadowColor": "rgba(255, 255, 255, 0.05)"
+}

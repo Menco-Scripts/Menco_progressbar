@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            overflow: hidden;
+            outline: 1px solid rgba(0, 0, 0, 0.5);
+            outline-offset: -1px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 12px;
+            transition: width 0.1s linear;
+        }
+
+        .progress-container-wrapper {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+<div id="progress-container-wrapper" class="progress-container-wrapper hidden">
+    <div id="progress-container" class="text-white px-6 py-3 shadow-lg w-72 text-center">
+        <p id="progress-text" class="text-sm font-bold"></p>
+        <div class="progress-container mt-2">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function applyConfig() {
+        const res = await fetch('colors.json');
+        const config = await res.json();
+
+        const container = document.querySelector('.progress-container');
+        const bar = document.querySelector('.progress-bar');
+        const wrapper = document.getElementById('progress-container');
+        const text = document.getElementById('progress-text');
+
+        container.style.background = `linear-gradient(to bottom, ${config.containerGradient.start}, ${config.containerGradient.end})`;
+        container.style.boxShadow = `inset 0px 1px 2px ${config.insetShadowColor}`;
+
+        bar.style.background = `linear-gradient(to right, ${config.progressBarGradient.start}, ${config.progressBarGradient.middle}, ${config.progressBarGradient.end})`;
+        bar.style.boxShadow = `0px 2px 6px ${config.boxShadowColor}`;
+
+        wrapper.style.backgroundColor = config.containerBackground;
+        text.style.color = config.textColor;
+    }
+
+    window.addEventListener('message', function(event) {
+        if (event.data.action === "start") {
+            document.getElementById("progress-text").textContent = event.data.text;
+            document.getElementById("progress-container-wrapper").classList.remove("hidden");
+            startProgress(event.data.duration);
+        }
+    });
+
+    function startProgress(duration) {
+        let progress = 0;
+        const interval = 50;
+        const step = (interval / duration) * 100;
+        const progressBar = document.getElementById("progress-bar");
+        const timer = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(timer);
+                document.getElementById("progress-container-wrapper").classList.add("hidden");
+            }
+            progressBar.style.width = progress + "%";
+        }, interval);
+    }
+
+    applyConfig();
+</script>
+</body>
+</html>
