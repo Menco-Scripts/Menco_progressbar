@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![GitHub release downloads](https://img.shields.io/github/downloads/Menco-Scripts/Menco_progressbar/total)
 
 # Menco Progress Bar
